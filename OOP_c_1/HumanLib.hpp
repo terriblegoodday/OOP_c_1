@@ -24,9 +24,7 @@ enum Sex {
     Female
 };
 
-/*
- Protocol class for classes that have Instagram account
- */
+
 class Instagrammable {
 public:
     virtual std::string getInstagramLink() {
@@ -34,22 +32,18 @@ public:
     };
 };
 
-/*
- Protocol class for classes that have a phone number
- */
-class Phoneable {
+
+class Callable {
 public:
     virtual long int getPhoneNumber() {
         return -1;
     }
 };
 
-/*
- Mixin class for classes that can call other classes
- */
-class PhoneMixin: public Phoneable {
+
+class PhoneMixin: public Callable {
 public:
-    void call(Phoneable &target) {
+    void call(Callable &target) {
         std::cout << getPhoneNumber() << " 📲 " << target.getPhoneNumber() << std::endl;
     }
 };
@@ -64,18 +58,22 @@ private:
     
 public:
     int getAge();
-    void setAge(int age);
     Sex getSex();
-    void setSex(Sex sex);
     std::string getFullName();
     std::string getFirstName();
     std::string getLastName();
+    
     std::string getInstagramLink() override;
+    
     long getPhoneNumber() override;
+    void setPhoneNumber(long int phoneNumber);
+
+    
+    void setAge(int age);
+    void setSex(Sex sex);
     void setFirstName(std::string firstName);
     void setLastName(std::string secondName);
     void setFullName(std::string firstName, std::string lastName);
-    void setPhoneNumber(long int phoneNumber);
 
     Human(int age, Sex sex, std::string firstName, std::string lastName);
 };
@@ -88,9 +86,12 @@ private:
 public:
     std::string getRecordNumber();
     std::string getNickname();
-    void setNickname(std::string nickname);
+    
     std::string getInstagramLink() override;
+    
     void setRecordNumber();
+    void setNickname(std::string nickname);
+    
     Student(int age, Sex sex, std::string firstName, std::string lastName, const std::string &recordNumber);
 };
 
@@ -99,12 +100,14 @@ private:
     std::string nickname;
 public:
     std::string getNickname();
+    
     Animal(std::string nickname);
 };
 
 class Cat: public Animal {
 public:
     std::string getInstagramLink() override;
+    
     Cat(std::string nickname);
 };
 

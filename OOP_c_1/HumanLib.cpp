@@ -51,13 +51,12 @@ void Student::setNickname(std::string nickname) {
 };
 
 std::string Student::getInstagramLink() {
-    auto nickname = this->getNickname();
+    std::string nickname = this->getNickname();
     if (nickname != "") return INSTAGRAMDOMAIN + nickname;
     return Human::getInstagramLink();
 };
 
 Human::Human(int age, Sex sex, std::string firstName, std::string lastName): age(age), sex(sex) {
-    
     this->firstName = firstName;
     this->lastName = lastName;
 };
